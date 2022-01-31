@@ -1,0 +1,105 @@
+
+.sort {
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+  }
+
+  .asc {
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+    margin: 8px;
+  }
+
+  .desc {
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    margin: 5px;
+  }
+
+  .no-sort {
+    display: none;
+  }
+
+  thead th {
+    cursor: pointer;
+  }
+
+
+  .tableFixHead {
+    overflow-y: auto;
+    /* height: 300px; */
+  }
+
+    .tableFixHead thead th {
+        position: sticky;
+        top: 0;
+        z-index: 0;
+    }
+
+  /* Just common table stuff. Really. */
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    table-layout: fixed;
+  }
+
+  td {
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+
+  table th, table td {
+    overflow: hidden;
+  }
+
+  th, td {
+    padding: 8px 16px;
+  }
+
+  th {
+    background: #eee;
+  }
+
+  .hidden {
+    display: none;
+    visibility: hidden;
+  }
+
+
+  /************************************************/
+
+  .filterable {
+    margin-top: 15px;
+  }
+
+    .filterable .panel-heading .pull-right {
+        margin-top: -20px;
+    }
+
+    .filterable .filters input[disabled] {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        box-shadow: none;
+        padding: 0;
+        height: 30px;
+    }
+
+        .filterable .filters input[disabled]::-webkit-input-placeholder {
+            color: #333;
+        }
+
+        .filterable .filters input[disabled]::-moz-placeholder {
+            color: #333;
+        }
+
+        .filterable .filters input[disabled]:-ms-input-placeholder {
+            color: #333;
+        }

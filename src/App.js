@@ -7,6 +7,7 @@ import { Route, Switch} from 'react-router-dom';
 import NotFound from './views/NotFound';
 import {ToastProvider} from 'react-toast-notifications';
 import routes from './Routes.js';
+import FullPageLoader from './model_ui/FullPageLoader';
 
 
 const AppLayout = () => {
@@ -22,7 +23,6 @@ const AppLayout = () => {
           );
       });
     };
- 
    
     useEffect(()=>{
       document.getElementById('root').classList.add('wrapper');     
@@ -58,6 +58,7 @@ const AppLayout = () => {
                 </Provider>
                 <Footer/>
             </div>
+            <FullPageLoader/> 
       </ToastProvider>         
   );
 }

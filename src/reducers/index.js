@@ -1,8 +1,7 @@
 import {combineReducers} from 'redux';
-
-import {dEntityTableauDeBord} from './dEntityTableauDeBord';
+import {dEntityImmobilier} from './dEntityImmobilier';
 
 export const reducers = combineReducers({
-    dataDashboard: dEntityTableauDeBord
+    Immobilier: dEntityImmobilier
    // loading: 
 })

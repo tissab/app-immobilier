@@ -3,10 +3,8 @@ import axios from 'axios';
 import React from 'react'
 
 
-const NavBar = ({menu}) => {
+const NavBar = () => {
    
-   
-    let userInfo = {}; 
    
     const minimizeSidebar = () => {
         if(document.querySelector('body').classList.contains('sidebar-mini') === false){
