@@ -21,6 +21,7 @@ export const fetchall = (url) => dispatch => {
         })
        .catch(err => {
             console.log(err.response);
+            document.getElementById('loading').style.display = 'none'
        })   
 }
 

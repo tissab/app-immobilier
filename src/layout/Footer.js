@@ -9,7 +9,7 @@ const Footer = () => {
 
                     </ul>
                     <p className="copyright text-center">
-                        made by 
+                        made by DIBY BASSIT
                     </p>
                 </nav>
             </div>

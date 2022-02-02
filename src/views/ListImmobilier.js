@@ -88,66 +88,6 @@ const ListImmobilier = (props) => {
         }
     }
 
-    const ExportData = (url, accept, extension) =>{
-        let lst = [];
-        lst = rows.map(x => x.values).map(x =>{
-            return {Adressemail: x.Adressemail, Contact: x.Contact, Matricule: x.Matricule, Nom: x.Nom, NomDepartement: x.NomDepartement, 
-                NomService: x.NomService, NomProfil: x.NomProfil, Prenom: x.Prenom, Utilisateur_id: x.Utilisateur_id}
-        });
-        document.getElementById('loading').style.display = 'block';
-          axios.post(`/${url}`
-          ,
-          lst
-          ,
-          {
-              responseType: 'arraybuffer',
-              headers: {
-                  'Content-Type': 'application/json',
-                  'Accept': `${accept}`
-              }
-          }
-          ).then(response => {
-            document.getElementById('loading').style.display = 'none';
-              const url = URL.createObjectURL(new Blob([response.data]));
-              const link = document.createElement('a');
-              link.href = url;
-              link.setAttribute('download', `Report.${extension}`); //or any other extension
-              document.body.appendChild(link);
-              link.click();
-              link.remove();
-              // win.location = url;
-              //console.log(response.data);
-          })
-    }
-
-    const Print = () =>{
-        
-        let lstCourrierArrive = [];
-        lstCourrierArrive = rows.map(x => x.values).map(x =>{
-            return {CourrierArrive_id: x.CourrierArrive_id, NumOrdre: x.NumOrdre, NumInterne: x.NumInterne, DateArrivee: x.DateArrivee, DateRendezVous: x.DateRendezVous, 
-                NomExpediteur: x.NomExpediteur, ContactExpediteur: x.ContactExpediteur, EmailExpediteur: x.EmailExpediteur}
-        });
-               
-        document.getElementById('loading').style.display = 'block'
-        axios.post('/exportCourrierArrivePdf'
-        ,
-        lstCourrierArrive 
-        ,
-        {
-            responseType: 'blob',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/pdf'
-            }
-        }).then(response => {
-            document.getElementById('loading').style.display = 'none';
-            let url = URL.createObjectURL(response.data);
-            window.open(url);
-            // window.URL.revokeObjectURL(url);
-           // win.location.href = url;
-        })
-    }
-
     return (
         <>
            <div className="row">
@@ -163,23 +103,6 @@ const ListImmobilier = (props) => {
                             <button className="btn btn-wd btn-facebook btn-outline mr-2" onClick={Delete}>
                                 <i className="far fa-trash-alt fa-lg" ></i> Supprimer
                             </button>
-                            <button className="btn btn-wd btn-facebook btn-outline mr-2" onClick={Print}>
-                                <i className="far fa-print fa-lg" ></i> Imprimer
-                            </button>
-                            <div className="btn-group mx-auto " >
-                                <button type="button" className="btn btn-wd btn-facebook btn-outline mr-2" id="dropdownMenuButton" 
-                                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">
-                                    <i className="fas fa-ellipsis-h fa-lg"></i>
-                                </button>
-                                <div className="dropdown-menu dropdown-menu-center" aria-labelledby="dropdownMenuButton" style={{marginTop:"5px"}}>
-                                    <a className="dropdown-item" type="button" onClick={()=>ExportData('exportCourrierArrivePdf','application/pdf','pdf')}>PDF</a>
-                                    <a className="dropdown-item" type="button" onClick={()=>ExportData('exportCourrierArriveExcel','application/vnd.openxmlformats-officedocument.spreadsheetml.sheet','xlsx')}>EXCEL</a>
-                                    <a className="dropdown-item" type="button" onClick={()=>ExportData('exportCourrierArriveCSV','text/csv','csv')}>CSV</a>
-                                    <a className="dropdown-item" type='button' onClick={()=>ExportData('exportCourrierArriveHtml','text/html','html')}>HTML</a>
-                                    <div className="dropdown-divider"></div>
-                                    <a className="dropdown-item" type='button' onClick={()=>ExportData('exportCourrierArriverDocX','application/vnd.openxmlformats-officedocument.wordprocessingml.document','docx')}>DOC</a>
-                               </div>
-                            </div>
                         </div>
                     </div>
                     <ReactTable 
